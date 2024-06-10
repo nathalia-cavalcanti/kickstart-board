@@ -30,7 +30,7 @@
     <!-- BOARD DETAIL -->
     <div
       v-if="!state.loading && !state.loadingError.show"
-      class="board-detail overflow-x-auto whitespace-nowrap"
+      class="board-detail overflow-x-auto whitespace-nowrap pb-5"
       data-cy="board-detail"
     >
       <div class="py-2.5">
@@ -70,12 +70,15 @@
         animation="150"
         group="lists"
         item-key="order"
-        class="inline-block"
+        class="list-draggable inline-block"
+        :scroll-sensitivity="200"
+        :force-fallback="true"
+        handle=".handle"
         @end="state.sortLists"
       >
         <template #item="{ element }">
           <div
-            class="inline-block align-top"
+            class="inline-block h-full align-top"
             data-cy="list-placeholder"
           >
             <ListItem :list="element" />
@@ -124,4 +127,9 @@ const onClickAway = () => {
 .board-title {
   @apply absolute outline-none font-bold top-0 bottom-0 right-0 left-0 w-full pl-3 rounded-sm cursor-pointer;
 }
+
+.list-draggable {
+  height: calc(100% - 52px);
+}
+
 </style>

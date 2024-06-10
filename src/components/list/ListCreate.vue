@@ -2,7 +2,7 @@
   <div
     v-if="createListInput"
     v-click-away="onClickAway"
-    class="ml-3 grid w-list cursor-pointer rounded-sm bg-gray2 px-1.5 py-1 shadow-md"
+    class="mx-3 grid w-list cursor-pointer rounded-sm bg-gray2 px-1.5 py-1 shadow-md"
   >
     <input
       ref="listCreate"
@@ -33,7 +33,7 @@
   </div>
   <div
     v-else
-    class="flex-no-shrink ml-3 w-list cursor-pointer rounded bg-white bg-opacity-20 p-2.5 text-sm text-gray-50 hover:bg-opacity-30"
+    class="flex-no-shrink mx-3 w-list cursor-pointer rounded bg-white bg-opacity-20 p-2.5 text-sm text-gray-50 hover:bg-opacity-30"
     data-cy="create-list"
     @click="enableInput()"
   >
