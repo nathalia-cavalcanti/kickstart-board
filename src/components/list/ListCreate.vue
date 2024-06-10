@@ -42,20 +42,12 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref, nextTick } from 'vue';
+import { ref, nextTick } from 'vue';
 import { useStore } from '@/store/store';
-import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';
 import Plus from '@/assets/icons/plus.svg';
 import SaveButton from '@/components/SaveButton.vue';
 import { storeToRefs } from 'pinia';
-
-defineProps({
-  board: {
-    default: null,
-    type: Number as PropType<Board['id']>,
-  },
-});
 
 const { board, createListInput, lists } = storeToRefs(useStore());
 const { createList } = useStore();

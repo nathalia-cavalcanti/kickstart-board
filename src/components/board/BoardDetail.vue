@@ -83,7 +83,7 @@
         </template>
       </draggable>
       <div class="inline-block align-top">
-        <ListCreate :board="state.board.id" />
+        <ListCreate />
       </div>
     </div>
   </div>
