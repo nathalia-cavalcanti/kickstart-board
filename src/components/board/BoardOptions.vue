@@ -2,7 +2,7 @@
   <div class="relative inline-block">
     <button
       data-cy="board-options"
-      class="ml-2 inline-grid h-8 w-8 cursor-pointer self-center rounded-sm bg-white bg-opacity-20 text-white hover:bg-opacity-30"
+      class="inline-grid h-8 w-8 cursor-pointer self-center rounded-sm bg-white bg-opacity-20 text-white hover:bg-opacity-30"
       @click="showDropdown()"
     >
       <Dots class="m-2 place-self-center" />

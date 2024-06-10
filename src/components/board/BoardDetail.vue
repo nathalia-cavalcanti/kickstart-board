@@ -33,8 +33,8 @@
       class="board-detail overflow-x-auto whitespace-nowrap pb-5"
       data-cy="board-detail"
     >
-      <div class="py-2.5">
-        <div class="relative ml-3 mr-0 inline-block h-8 py-1.5">
+      <div class="flex min-w-fit gap-2 px-3 py-2.5">
+        <div class="relative inline-block h-8 py-1.5">
           <div class="invisible inline-block px-3 font-bold">
             {{ state.board.name }}
           </div>
@@ -52,7 +52,7 @@
           >
         </div>
         <div
-          class="relative ml-2 inline-grid h-8 w-8 cursor-pointer self-center rounded-sm bg-white bg-opacity-20 hover:bg-opacity-30"
+          class="relative inline-grid h-8 w-8 cursor-pointer self-center rounded-sm bg-white bg-opacity-20 hover:bg-opacity-30"
           :class="[state.board.starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
           data-cy="star"
           @click="
@@ -62,6 +62,20 @@
           "
         >
           <Star class="m-2 place-self-center" />
+        </div>
+        <div class="inline-flex bg-white bg-opacity-20 p-1 text-white hover:bg-opacity-30">
+          <select
+            v-model="filterStatus"
+            class="bg-transparent outline-none"
+          >
+            <option
+              v-for="(option, index) in filterOptions"
+              :key="index"
+              :value="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
         </div>
         <BoardOptions :board="state.board" />
       </div>
@@ -81,7 +95,10 @@
             class="inline-block h-full align-top"
             data-cy="list-placeholder"
           >
-            <ListItem :list="element" />
+            <ListItem
+              :list="element"
+              :filter-status="filterStatus"
+            />
           </div>
         </template>
       </draggable>
@@ -108,6 +125,9 @@ import draggable from 'vuedraggable';
 const route = useRoute();
 const state = useStore();
 const inputActive = ref(false);
+const filterStatus = ref<Boolean | 'all'>('all');
+const filterOptions = [ {value: 'all', label: 'All'}, {value: true, label: 'Completed'}, {value: false, label: 'Incompleted'} ]
+
 const boardId = Number(route.params.board);
 state.getBoardDetail(boardId);
 const onClickAway = () => {
