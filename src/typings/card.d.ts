@@ -4,7 +4,7 @@ interface Card {
   name: string;
   description: string;
   id: number;
-  image: { name: string; url: string } | null;
+  file: { name: string; url: string; type: Blob['type'] } | null;
   created: string;
   deadline: string;
   completed: boolean;

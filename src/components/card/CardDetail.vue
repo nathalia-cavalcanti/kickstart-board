@@ -129,22 +129,29 @@
             <Attachment class="-ml-8 mr-3 inline-block w-5" />
           </div>
           <h1 class="mb-4 inline-block text-lg font-bold text-black">
-            Image
+            File
           </h1>
           <div
-            v-if="activeCard.image"
+            v-if="activeCard.file"
             class="grid grid-cols-6 gap-x-4"
             data-cy="image-attachment"
           > 
             <div class="col-span-2 row-span-2">
-              <img :src="activeCard.image.url">
+              <FilePDF
+                v-if="activeCard.file.type === 'application/pdf'"
+                class="h-auto max-w-full"
+              />
+              <img
+                v-else
+                :src="activeCard.file.url"
+              >
             </div>
-            <div class="col-span-4 font-bold">
-              {{ activeCard.image.name }}
+            <div class="col-span-4 break-all font-bold">
+              {{ activeCard.file.name }}
               <div
                 class="block cursor-pointer font-normal underline"
                 data-cy="image-delete"
-                @click="downloadFile(activeCard.image)"
+                @click="downloadFile(activeCard.file)"
               >
                 <Download class="mb-1 inline-block w-4" /> 
                 Download
@@ -152,7 +159,7 @@
               <div
                 class="block cursor-pointer font-normal underline"
                 data-cy="image-delete"
-                @click="patchCard(activeCard, { image: null })"
+                @click="patchCard(activeCard, { file: null })"
               >
                 <Cross class="mb-1 inline-block w-4" />Delete
               </div>
@@ -202,6 +209,7 @@ import { ref, onMounted } from 'vue';
 import { selectInput } from '@/utils/selectInput';
 import { useStore } from '@/store/store';
 import Attachment from '@/assets/icons/attachment.svg';
+import FilePDF from '@/assets/icons/pdfFile.svg';
 import Board from '@/assets/icons/board.svg';
 import Card from '@/typings/card';
 import Checkbox from '@/components/Checkbox.vue';
@@ -255,7 +263,7 @@ const copyProperties = (content: Card) => {
   return clipboard.writeText(clipBoardValue);
 };
 
-const downloadFile = async (file: Card['image']) => {
+const downloadFile = async (file: Card['file']) => {
   if (!file) return
 
   await axios.get(file.url, { responseType: 'blob' }).then(({data}) => {
