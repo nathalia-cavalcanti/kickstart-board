@@ -5,7 +5,7 @@
     @dragenter="isDragging = true"
     @dragleave="isDragging = false"
   >
-    <div class="mb-1 flex">
+    <div class="handle mb-1 flex">
       <input
         v-click-away="onClickAway"
         class="inline-block h-8 flex-grow cursor-pointer rounded-sm border-2 border-transparent bg-gray2 px-1 py-0.5 text-sm font-semibold text-gray-900 outline-none focus:border-blue6 focus:bg-gray1"

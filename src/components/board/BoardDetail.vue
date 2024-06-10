@@ -71,6 +71,9 @@
         group="lists"
         item-key="order"
         class="inline-block"
+        :scroll-sensitivity="200"
+        :force-fallback="true"
+        handle=".handle"
         @end="state.sortLists"
       >
         <template #item="{ element }">
