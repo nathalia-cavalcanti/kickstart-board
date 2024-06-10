@@ -40,7 +40,7 @@
         <LoadingIcon class="mb-1 inline-block" />&nbsp;&nbsp;Loading cards ...
       </div>
       <draggable
-        :list="list.cards"
+        :list="filteredCards"
         animation="150"
         group="cards"
         ghost-class="bg-gray2"
@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { blurInput } from '@/utils/blurInput';
 import { inputValue } from '@/utils/inputValue';
 import { selectInput } from '@/utils/selectInput';
@@ -90,6 +90,7 @@ import { storeToRefs } from 'pinia';
 
 const props = defineProps<{
   list: List;
+  filterStatus: Boolean | 'all';
 }>();
 
 const cardCreate = ref(false);
@@ -112,6 +113,14 @@ const onClickAway = () => {
 const showCardCreate = (flag: boolean) => {
   cardCreate.value = flag;
 };
+
+const filteredCards = computed(() => {
+  const cards = props.list.cards;
+  
+  if(props.filterStatus === 'all') return cards;
+  return cards?.filter(({ completed }) => completed === props.filterStatus);
+})
+
 const sortCards = () => {
   // find list to be updated - dragged card(s)
   const listItem = lists.value.find((l: List) => l.id === props.list.id);
