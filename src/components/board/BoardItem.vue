@@ -5,8 +5,8 @@
     :to="{ path: '/board/' + board.id }"
   >
     <div
-      class="board"
       :id="'board-' + board.id"
+      class="board"
       data-cy="board-item"
       @click="navigate"
       @mouseover="showStar = true"
@@ -22,7 +22,7 @@
         @click.stop="patchBoard(board, { starred: !board.starred })"
       >
         <Star
-          class="col-span-1 w-5 h-5"
+          class="col-span-1 h-5 w-5"
           :class="[board.starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
         />
       </div>

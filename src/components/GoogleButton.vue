@@ -1,6 +1,6 @@
 <template>
   <button
-    class="inline-flex justify-center items-center py-2 px-4 mt-2 w-full text-sm text-white hover:bg-zinc-50 border"
+    class="mt-2 inline-flex w-full items-center justify-center border px-4 py-2 text-sm text-white hover:bg-zinc-50"
     data-cy="google-button"
   >
     <svg

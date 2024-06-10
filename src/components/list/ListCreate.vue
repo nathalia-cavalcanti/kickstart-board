@@ -2,12 +2,12 @@
   <div
     v-if="createListInput"
     v-click-away="onClickAway"
-    class="grid py-1 px-1.5 ml-3 w-list bg-gray2 rounded-sm shadow-md cursor-pointer"
+    class="ml-3 grid w-list cursor-pointer rounded-sm bg-gray2 px-1.5 py-1 shadow-md"
   >
     <input
       ref="listCreate"
       v-model="listTitle"
-      class="py-2 px-2 w-full h-9 text-sm rounded-sm border-2 border-transparent focus:border-blue6 outline-none"
+      class="h-9 w-full rounded-sm border-2 border-transparent px-2 py-2 text-sm outline-none focus:border-blue6"
       data-cy="add-list-input"
       placeholder="Enter list title..."
       @keyup.enter.prevent="addList()"
@@ -22,7 +22,7 @@
         @click="addList()"
       />
       <Cross
-        class="inline-block order-last p-1 mx-0.5 w-8 h-8 text-gray-600 fill-current"
+        class="order-last mx-0.5 inline-block h-8 w-8 fill-current p-1 text-gray-600"
         data-cy="cancel"
         @click.stop="
           createListInput = false;
@@ -33,11 +33,11 @@
   </div>
   <div
     v-else
-    class="p-2.5 ml-3 w-list text-sm text-gray-50 bg-white bg-opacity-20 hover:bg-opacity-30 rounded cursor-pointer flex-no-shrink"
+    class="flex-no-shrink ml-3 w-list cursor-pointer rounded bg-white bg-opacity-20 p-2.5 text-sm text-gray-50 hover:bg-opacity-30"
     data-cy="create-list"
     @click="enableInput()"
   >
-    <Plus class="inline-block w-3 h-3" /> {{ !lists.length ? 'Add a list' : 'Add another list' }}
+    <Plus class="inline-block h-3 w-3" /> {{ !lists.length ? 'Add a list' : 'Add another list' }}
   </div>
 </template>
 

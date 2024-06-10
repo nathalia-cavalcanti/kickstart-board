@@ -1,13 +1,13 @@
 <template>
   <div class="bg-white">
-    <div class="container py-8 px-6 mx-auto">
-      <h1 class="mt-4 text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl">
+    <div class="container mx-auto px-6 py-8">
+      <h1 class="mt-4 text-center text-3xl font-semibold capitalize text-gray-800 lg:text-4xl">
         Pricing Plan
       </h1>
       <div
         v-if="pricing.discountEligible"
         data-cy="discount"
-        class="grid mx-auto mt-4 max-w-2xl bg-yellow-100 rounded-sm border border-yellow-300"
+        class="mx-auto mt-4 grid max-w-2xl rounded-sm border border-yellow-300 bg-yellow-100"
       >
         <p class="pb-1 text-center">
           Your country is <span class="text-2xl">{{ emoji.emojify(`:flag-${pricing.location}:`) }}</span>,
@@ -20,18 +20,18 @@
       >
         <div class="mt-6 space-y-8 xl:mt-12">
           <div
-            class="flex justify-between items-center py-4 px-8 mx-auto max-w-2xl rounded-sm border cursor-pointer"
+            class="mx-auto flex max-w-2xl cursor-pointer items-center justify-between rounded-sm border px-8 py-4"
             data-cy="plan-item"
             :class="plan.id === pricing.activePlan && 'border-blue6 text-blue6'"
             @click="pricing.activePlan = plan.id"
           >
             <div class="flex items-center">
               <RoundCheckbox
-                class="w-5 h-5 text-gray-400 sm:w-9 sm:h-9"
+                class="h-5 w-5 text-gray-400 sm:h-9 sm:w-9"
                 :class="plan.id === pricing.activePlan && 'text-blue6'"
               />
 
-              <div class="flex flex-col items-center mx-5 space-y-1">
+              <div class="mx-5 flex flex-col items-center space-y-1">
                 <h2
                   class="text-lg font-medium text-gray-700 sm:text-2xl"
                   :class="plan.id === pricing.activePlan && 'text-blue6'"
@@ -51,9 +51,9 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-center mt-6">
+      <div class="mt-6 flex justify-center">
         <button
-          class="py-2 px-8 tracking-wide text-white capitalize bg-green7 hover:bg-green6 rounded-sm focus:outline-none"
+          class="rounded-sm bg-green7 px-8 py-2 capitalize tracking-wide text-white hover:bg-green6 focus:outline-none"
           data-cy="find-location"
           @click="geolocation"
         >
@@ -63,7 +63,7 @@
       <div
         id="map"
         ref="map"
-        class="mx-auto mt-4 max-w-2xl h-64"
+        class="mx-auto mt-4 h-64 max-w-2xl"
       />
     </div>
   </div>

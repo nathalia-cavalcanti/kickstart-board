@@ -1,6 +1,10 @@
 <template>
   <nav class="shadow-xl">
-    <button data-cy="home" :class="[route.path !== '/' ? 'visible' : 'invisible']" @click="router.push('/')">
+    <button
+      data-cy="home"
+      :class="[route.path !== '/' ? 'visible' : 'invisible']"
+      @click="router.push('/')"
+    >
       <Home class="place-self-center" />
     </button>
   </nav>

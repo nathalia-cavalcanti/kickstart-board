@@ -1,18 +1,26 @@
 <template>
   <div
     data-cy="card"
-    class="grid relative p-2 my-1.5 w-full bg-white hover:bg-gray1 rounded border border-gray1 border-solid drop-shadow-sm cursor-pointer card"
+    class="card relative my-1.5 grid w-full cursor-pointer rounded border border-solid border-gray1 bg-white p-2 drop-shadow-sm hover:bg-gray1"
     @click="showCardModule(card.id, true)"
   >
     <div class="flex px-1.5 pl-0.5">
       <Checkbox :card="card" />
-      <div class="flex-grow pl-2 text-sm text-gray-800 select-none" style="white-space: break-spaces" data-cy="card-text">
+      <div
+        class="flex-grow select-none pl-2 text-sm text-gray-800"
+        style="white-space: break-spaces"
+        data-cy="card-text"
+      >
         {{ card.name }}
       </div>
-      <Pen class="hidden absolute top-2 right-2 p-1 w-5 h-5 text-gray-700 bg-gray1 bg-opacity-60 pen" />
+      <Pen class="pen absolute right-2 top-2 hidden h-5 w-5 bg-gray1 bg-opacity-60 p-1 text-gray-700" />
     </div>
-    <div class="py-1 px-1.5 mt-1 w-[fit-content] text-xs rounded-sm" data-cy="due-date" :class="card.completed ? 'completed' : 'text-gray9'">
-      <Clock class="inline-block w-4 h-4 fill-current" />
+    <div
+      class="mt-1 w-[fit-content] rounded-sm px-1.5 py-1 text-xs"
+      data-cy="due-date"
+      :class="card.completed ? 'completed' : 'text-gray9'"
+    >
+      <Clock class="inline-block h-4 w-4 fill-current" />
       <span class="ml-2">{{ new Date(card.deadline).toDateString().substring(4) }}</span>
     </div>
   </div>

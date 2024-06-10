@@ -1,11 +1,11 @@
 <template>
-  <div class="inline-block relative">
+  <div class="relative inline-block">
     <button
       data-cy="board-options"
-      class="inline-grid self-center ml-2 w-8 h-8 text-white bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
+      class="ml-2 inline-grid h-8 w-8 cursor-pointer self-center rounded-sm bg-white bg-opacity-20 text-white hover:bg-opacity-30"
       @click="showDropdown()"
     >
-      <Dots class="place-self-center m-2" />
+      <Dots class="m-2 place-self-center" />
     </button>
     <Dropdown
       v-if="dropdown"

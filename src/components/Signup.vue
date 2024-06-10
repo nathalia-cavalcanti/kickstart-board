@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 gap-x-8 items-stretch px-28 -mt-10 h-screen">
+  <div class="-mt-10 grid h-screen grid-cols-2 items-stretch gap-x-8 px-28">
     <div class="grid content-center">
       <h1 class="mb-8 text-3xl font-bold">
         Create a new account
@@ -7,7 +7,7 @@
       <label for="email">Email</label>
       <input
         v-model="signupForm.email"
-        class="px-2 mb-3 w-full h-10 bg-gray3 focus:bg-white rounded-sm"
+        class="mb-3 h-10 w-full rounded-sm bg-gray3 px-2 focus:bg-white"
         placeholder="Email"
         name="email"
         data-cy="signup-email"
@@ -16,7 +16,7 @@
       <input
         v-model="signupForm.password"
         type="password"
-        class="px-2 mb-3 w-full h-10 bg-gray3 focus:bg-white rounded-sm"
+        class="mb-3 h-10 w-full rounded-sm bg-gray3 px-2 focus:bg-white"
         data-cy="signup-password"
         placeholder="Password"
         name="password"
@@ -39,7 +39,7 @@
         >Send me a welcome email</label>
       </div>
       <button
-        class="py-2 w-full text-white bg-green7 hover:bg-green6"
+        class="w-full bg-green7 py-2 text-white hover:bg-green6"
         data-cy="signup-submit"
         @click="
           signup(signupForm.email, signupForm.password, signupForm.welcomeEmail).then(() => {
@@ -56,14 +56,14 @@
         <GoogleButton :log-sign="'Sign up'" />
       </GoogleSignIn>
       <router-link
-        class="mt-4 text-sm text-center underline"
+        class="mt-4 text-center text-sm underline"
         to="/login"
       >
         Already have an account? Log in here
       </router-link>
     </div>
     <img
-      class="gap-x-5 self-center place-self-center"
+      class="gap-x-5 place-self-center self-center"
       src="@/assets/signup.png"
     >
   </div>
