@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const API_MOCK_BASE_URL = 'https://66650c11d122c2868e3facc6.mockapi.io'
-
 export const API_MOCK = axios.create({
-    baseURL: API_MOCK_BASE_URL,
+    baseURL: process.env.API_MOCK_BASE_URL,
     headers: {'content-type':'application/json'},
 
     //Remove when use a real API returning empty array with status 200
