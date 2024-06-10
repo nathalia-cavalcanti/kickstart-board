@@ -7,7 +7,7 @@
     <div class="flex px-1.5 pl-0.5">
       <Checkbox :card="card" />
       <div
-        class="flex-grow select-none pl-2 pr-4 text-sm text-gray-800"
+        class="flex-grow select-none break-all pl-2 pr-4 text-sm text-gray-800"
         style="white-space: break-spaces"
         data-cy="card-text"
       >

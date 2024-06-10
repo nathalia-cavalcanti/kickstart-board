@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed left-0 top-0 z-40 flex h-full w-full items-center justify-center bg-backdrop"
+    class="fixed left-0 top-0 z-40 flex h-full w-full justify-center bg-backdrop md:items-center"
     data-cy="card-detail-backdrop"
     @click.self="
       showCardModule(activeCard.id, false);
@@ -8,17 +8,26 @@
     "
   >
     <div
-      class="bg-gray2"
+      class="relative flex w-full flex-col gap-3 overflow-y-scroll bg-gray2 p-6 md:w-[750px] md:flex-row md:justify-between"
       data-cy="card-detail"
     >
-      <div>
+      <div class="absolute right-6 top-6 grid h-8 w-8 cursor-pointer place-content-center place-self-end hover:bg-gray5">
+        <Cross
+          class="h-6 w-6 fill-current text-gray-600"
+          @click="
+            showCardModule(activeCard.id, false);
+            router.push(router.currentRoute.value.path);
+          "
+        />
+      </div>
+
+      <div class="w-full">
         <div class="mb-4 ml-9">
-          <div class="inline-block">
-            <Board />
-          </div>
+          <Board class="-ml-8 mr-3 inline-block w-5" />
           <input
             v-model="activeCard.name"
             v-click-away="clickAwayCardName"
+            class="board-title mb-2 bg-transparent text-base font-semibold leading-4 text-black hover:bg-opacity-30 focus:bg-white"
             data-cy="card-detail-title"
             @focus="
               selectInput($event);
@@ -42,21 +51,20 @@
           </h2>
         </div>
         <div class="mb-4 ml-9">
-          <h2>DUE DATE</h2>
-          <div>
+          <h2 class="text-sm text-gray9">
+            DUE DATE
+          </h2>
+          <div class="mt-1 flex gap-1">
             <Checkbox :card="activeCard" />
-            <h2>
+            <button
+              class="bg-gray3 px-4 py-1 hover:bg-gray5"
+              data-cy="calendar-dropdown"
+              @click="showDate = true"
+            >
               {{ new Date(activeCard.deadline).toDateString() }}
-              <div v-show="activeCard.completed">
-                COMPLETED
-              </div>
-              <button
-                data-cy="calendar-dropdown"
-                @click="showDate = true"
-              >
-                <Downarrow class="inline-block w-5 cursor-pointer fill-current stroke-current py-2 pl-2 text-gray-800" />
-              </button>
-            </h2>
+              <Downarrow class="inline-block w-5 cursor-pointer fill-current stroke-current py-2 pl-2 text-gray-800" />
+            </button>
+
             <div
               v-if="showDate"
               class="absolute"
@@ -99,10 +107,9 @@
             </div>
           </div>
         </div>
+
         <div class="mb-4 ml-9">
-          <div class="inline-block">
-            <Description />
-          </div>
+          <Description class="-ml-8 mr-3 inline-block w-5" />
           <h1 class="mb-4 inline-block text-lg font-semibold text-black">
             Description
           </h1>
@@ -127,7 +134,7 @@
         </div>
         <div class="mb-4 ml-9">
           <div class="inline-block">
-            <Attachment />
+            <Attachment class="-ml-8 mr-3 inline-block w-5" />
           </div>
           <h1 class="mb-4 inline-block text-lg font-semibold text-black">
             Image
@@ -165,16 +172,7 @@
           />
         </div>
       </div>
-      <div class="col-span-2 grid content-start gap-y-2">
-        <div class="grid h-8 w-8 cursor-pointer place-content-center place-self-end self-end hover:bg-gray5">
-          <Cross
-            class="h-6 w-6 fill-current text-gray-600"
-            @click="
-              showCardModule(activeCard.id, false);
-              router.push(router.currentRoute.value.path);
-            "
-          />
-        </div>
+      <div class="col-span-2 grid min-w-[140px] content-start gap-y-2 md:mt-10">
         <div
           class="cursor-pointer rounded-sm bg-gray3 px-2 py-0.5 text-sm text-gray-600 hover:bg-gray5"
           data-cy="calendar-button"
