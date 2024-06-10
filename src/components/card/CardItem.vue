@@ -48,7 +48,7 @@ const { showCardModule } = useStore();
 
 const isOverdue = () => {
   const today = new Date();
-  return moment(props.card.deadline).isBefore(today)
+  return moment(props.card.deadline).isBefore(today, 'day')
 };
 
 </script>
