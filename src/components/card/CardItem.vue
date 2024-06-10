@@ -16,9 +16,9 @@
       <Pen class="pen absolute right-2 top-2 hidden h-5 w-5 bg-gray1 bg-opacity-60 p-1 text-gray-700" />
     </div>
     <div
-      class="mt-1 w-[fit-content] rounded-sm px-1.5 py-1 text-xs"
+      class="mt-1 w-[fit-content] rounded-sm px-1.5 py-1 text-xs text-gray9"
       data-cy="due-date"
-      :class="card.completed ? 'completed' : 'text-gray9'"
+      :class="{ overdue: isOverdue() && !card.completed, completed: card.completed }"
     >
       <Clock class="inline-block h-4 w-4 fill-current" />
       <span class="ml-2">{{ new Date(card.deadline).toDateString().substring(4) }}</span>
@@ -35,7 +35,7 @@ import Clock from '@/assets/icons/clock.svg';
 import Pen from '@/assets/icons/pen.svg';
 import moment from 'moment';
 
-defineProps({
+const props = defineProps({
   card: {
     default: null,
     type: Object as PropType<Card>,
@@ -43,6 +43,12 @@ defineProps({
 });
 
 const { showCardModule } = useStore();
+
+const isOverdue = () => {
+  const today = new Date();
+  return moment(props.card.deadline).isBefore(today)
+};
+
 </script>
 
 <style lang="postcss" scoped>
@@ -52,5 +58,9 @@ const { showCardModule } = useStore();
 
 .completed {
   @apply bg-green5 text-white;
+}
+
+.overdue {
+  @apply bg-red1 text-white;
 }
 </style>

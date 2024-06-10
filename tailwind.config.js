@@ -38,7 +38,9 @@ theme: {
         green6: '#61BD4F',
         green7: '#5AAC44',
         green8: '#519839',
-        green9: '#49852E'
+        green9: '#49852E',
+
+        red1: '#EF4444'
       },
       inset: {
         dropdown: '234px'
