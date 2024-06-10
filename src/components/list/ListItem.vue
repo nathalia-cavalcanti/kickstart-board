@@ -100,10 +100,11 @@ const showCardCreate = (flag: boolean) => {
   cardCreate.value = flag;
 };
 const sortCards = () => {
-  // find list index of dragged card(s)
-  const listIndex = lists.value.find((l: List) => l.id === props.list.id);
-  // trigget PATCH request for every car that was dragged
-  lists.value[listIndex].cards.forEach((card: Card, order: Card['order']) => {
+  // find list to be updated - dragged card(s)
+  const listItem = lists.value.find((l: List) => l.id === props.list.id);
+
+  // trigget PATCH request for every card that was dragged
+  listItem.cards?.forEach((card: Card, order: Card['order']) => {
     patchCard(card, { listId: props.list.id, order });
   });
 };
