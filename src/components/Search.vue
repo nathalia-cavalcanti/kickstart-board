@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid fixed z-50 place-content-center w-screen h-screen"
+    class="fixed z-50 grid h-screen w-screen place-content-center"
     style="background-color: rgba(30, 41, 59, 0.5)"
   >
     <div class="shadow-lg">
@@ -12,7 +12,7 @@
         v-model="searchQuery"
         v-click-away="onClickAway"
         type="text"
-        class="px-3 w-96 h-14 text-2xl bg-white border-b-2 border-slate-300 outline-none"
+        class="h-14 w-96 border-b-2 border-slate-300 bg-white px-3 text-2xl outline-none"
         data-cy="search-input"
         @keyup="triggerSearch"
       >
@@ -20,11 +20,11 @@
         v-for="result in searchResults"
         :key="result.id"
         data-cy="result-item"
-        class="flex w-96 h-12 text-xl bg-white border-slate-600 border-b-1"
+        class="border-b-1 flex h-12 w-96 border-slate-600 bg-white text-xl"
       >
         <a
           :href="`/board/${result.boardId}?card=${result.id}`"
-          class="place-self-center py-3 px-3 w-full h-full"
+          class="h-full w-full place-self-center px-3 py-3"
         >
           {{ result.name }}
         </a>

@@ -1,6 +1,6 @@
 <template>
   <button
-    class="inline-block py-1 px-3 mt-1 h-8 text-sm font-normal text-center text-white bg-green7 hover:bg-green6 rounded-sm focus:outline-none"
+    class="mt-1 inline-block h-8 rounded-sm bg-green7 px-3 py-1 text-center text-sm font-normal text-white hover:bg-green6 focus:outline-none"
     style="width: fit-content"
   >
     {{ buttontext }}

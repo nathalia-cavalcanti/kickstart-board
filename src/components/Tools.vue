@@ -1,12 +1,12 @@
 <template>
   <div
-    class="fixed right-0 bottom-0 p-5 m-3 rounded-sm"
+    class="fixed bottom-0 right-0 m-3 rounded-sm p-5"
     style="background: rgb(0 0 0 / 0.1)"
     data-cy="api-tools"
   >
     Reset application:
     <button
-      class="px-1 m-1 bg-white border border-black"
+      class="m-1 border border-black bg-white px-1"
       @click="
         reset();
         router.push('/');
@@ -15,7 +15,7 @@
       All
     </button>
     <button
-      class="px-1 m-1 bg-white border border-black"
+      class="m-1 border border-black bg-white px-1"
       @click="
         resetBoards();
         router.push('/');
@@ -24,19 +24,19 @@
       Boards
     </button>
     <button
-      class="px-1 m-1 bg-white border border-black"
+      class="m-1 border border-black bg-white px-1"
       @click="resetLists()"
     >
       Lists
     </button>
     <button
-      class="px-1 m-1 bg-white border border-black"
+      class="m-1 border border-black bg-white px-1"
       @click="resetCards()"
     >
       Cards
     </button>
     <button
-      class="px-1 m-1 bg-white border border-black"
+      class="m-1 border border-black bg-white px-1"
       @click="resetUsers()"
     >
       Users

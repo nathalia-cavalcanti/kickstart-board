@@ -1,11 +1,11 @@
 <template>
   <button
     data-cy="list-options"
-    class="inline-grid self-center ml-2 w-8 h-8 text-white bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
+    class="ml-2 inline-grid h-8 w-8 cursor-pointer self-center rounded-sm bg-white bg-opacity-20 text-white hover:bg-opacity-30"
     @click="showDropdown()"
   >
     <Dots
-      class="inline-block flex-grow-0 place-self-end p-1.5 w-8 h-8 text-gray10 bg-transparent hover:bg-gray4 active:bg-gray7 rounded-sm border-2 border-transparent cursor-pointer"
+      class="inline-block h-8 w-8 flex-grow-0 cursor-pointer place-self-end rounded-sm border-2 border-transparent bg-transparent p-1.5 text-gray10 hover:bg-gray4 active:bg-gray7"
     />
   </button>
   <Dropdown

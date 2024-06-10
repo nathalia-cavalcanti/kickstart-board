@@ -4,7 +4,6 @@
   <Notification />
   <Tools v-if="state.showTools" />
   <router-view class="mt-10" />
-  <Footer />
 </template>
 
 <script setup lang="ts">
@@ -14,7 +13,6 @@ import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
 import Tools from '@/components/Tools.vue';
 import Search from '@/components/Search.vue';
-import Footer from '@/components/Footer.vue';
 import axios from 'axios';
 
 const state = useStore();

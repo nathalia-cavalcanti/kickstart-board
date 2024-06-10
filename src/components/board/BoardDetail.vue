@@ -6,23 +6,23 @@
     <!-- LOADING -->
     <div
       v-if="state.loading"
-      class="grid justify-center content-center h-screen loading"
+      class="loading grid h-screen content-center justify-center"
     >
-      <div><LoadingIcon class="inline-block mb-1" />&nbsp;&nbsp;Loading data ...</div>
+      <div><LoadingIcon class="mb-1 inline-block" />&nbsp;&nbsp;Loading data ...</div>
     </div>
     <!-- ERROR STATE -->
     <div
       v-if="state.loadingError.show"
-      class="grid justify-center content-center h-screen"
+      class="grid h-screen content-center justify-center"
       data-cy="board-list-error-message"
     >
-      <span class="block mb-4 text-8xl font-bold text-center text-gray-200">{{ state.loadingError.status }}</span>
-      <p class="block mb-4 text-center text-gray-400">
+      <span class="mb-4 block text-center text-8xl font-bold text-gray-200">{{ state.loadingError.status }}</span>
+      <p class="mb-4 block text-center text-gray-400">
         {{ state.loadingError.message || 'There was an error loading board' }}
       </p>
       <router-link
         to="/"
-        class="block font-semibold text-center text-blue7"
+        class="block text-center font-semibold text-blue7"
       >
         Go back home
       </router-link>
@@ -30,18 +30,18 @@
     <!-- BOARD DETAIL -->
     <div
       v-if="!state.loading && !state.loadingError.show"
-      class="overflow-x-auto whitespace-nowrap board-detail"
+      class="board-detail overflow-x-auto whitespace-nowrap"
       data-cy="board-detail"
     >
       <div class="py-2.5">
-        <div class="inline-block relative py-1.5 mr-0 ml-3 h-8">
-          <div class="inline-block invisible px-3 font-bold">
+        <div class="relative ml-3 mr-0 inline-block h-8 py-1.5">
+          <div class="invisible inline-block px-3 font-bold">
             {{ state.board.name }}
           </div>
           <input
             v-model="state.board.name"
             v-click-away="onClickAway"
-            class="text-white bg-white bg-opacity-20 hover:bg-opacity-30 board-title"
+            class="board-title bg-white bg-opacity-20 text-white hover:bg-opacity-30"
             data-cy="board-title"
             autocomplete="off"
             name="board-title"
@@ -52,7 +52,7 @@
           >
         </div>
         <div
-          class="inline-grid relative self-center ml-2 w-8 h-8 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
+          class="relative ml-2 inline-grid h-8 w-8 cursor-pointer self-center rounded-sm bg-white bg-opacity-20 hover:bg-opacity-30"
           :class="[state.board.starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
           data-cy="star"
           @click="
@@ -61,7 +61,7 @@
             })
           "
         >
-          <Star class="place-self-center m-2" />
+          <Star class="m-2 place-self-center" />
         </div>
         <BoardOptions :board="state.board" />
       </div>
@@ -83,7 +83,7 @@
         </template>
       </draggable>
       <div class="inline-block align-top">
-        <ListCreate :board="state.board.id" />
+        <ListCreate />
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@
     <textarea
       ref="cardCreate"
       v-model="cardTitle"
-      class="py-1 px-2 w-full h-16 text-sm rounded border-b border-gray7 outline-none resize-none"
+      class="h-16 w-full resize-none rounded border-b border-gray7 px-2 py-1 text-sm outline-none"
       data-cy="new-card-input"
       placeholder="Enter a title for this card..."
       @keydown.enter.prevent="addCard"
@@ -22,7 +22,7 @@
       />
       <Cross
         data-cy="cancel"
-        class="inline-block order-last p-1 mx-0.5 w-8 h-8 text-gray-600 fill-current"
+        class="order-last mx-0.5 inline-block h-8 w-8 fill-current p-1 text-gray-600"
         @click.stop="
           emit('toggleInput', false);
           cardTitle = '';

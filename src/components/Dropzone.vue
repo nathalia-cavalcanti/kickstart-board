@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-40 border-4 border-gray-400 border-dashed"
+    class="h-40 w-full border-4 border-dashed border-gray-400"
     data-cy="upload-image"
     :class="isDragActive && 'border-gray-800'"
     accept="image/png, image/gif, image/jpeg"
@@ -9,9 +9,9 @@
     @dragover.prevent
     @drop.prevent="drop"
   >
-    <div class="grid justify-center items-center w-full h-32 min-h-full">
+    <div class="grid h-32 min-h-full w-full items-center justify-center">
       <Dropicon
-        class="place-self-end w-48 text-gray-400 fill-current"
+        class="w-48 place-self-end fill-current text-gray-400"
         :class="isDragActive && 'fill-current text-gray-800'"
       />
       <div
@@ -22,7 +22,7 @@
       </div>
       <label
         for="dropzoneFile"
-        class="self-start place-self-center py-1.5 px-3 mt-2 text-gray1 bg-gray-400 cursor-pointer"
+        class="mt-2 cursor-pointer place-self-center self-start bg-gray-400 px-3 py-1.5 text-gray1"
         :class="isDragActive && 'bg-gray-800'"
       >select image</label>
     </div>

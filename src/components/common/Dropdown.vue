@@ -1,13 +1,13 @@
 <template>
   <div
     v-click-away="onClickAway"
-    class="absolute top-11 left-2 z-10 py-2 w-dropdown bg-white rounded-sm shadow-xl"
+    class="absolute left-2 top-11 z-10 w-dropdown rounded-sm bg-white py-2 shadow-xl"
   >
-    <div class="mt-0.5 h-7 text-sm text-center text-gray-600">
+    <div class="mt-0.5 h-7 text-center text-sm text-gray-600">
       {{ header }}
     </div>
     <Cross
-      class="absolute top-1 right-1 px-2 w-8 h-8 text-gray-600 cursor-pointer"
+      class="absolute right-1 top-1 h-8 w-8 cursor-pointer px-2 text-gray-600"
       @click="emit('close')"
     />
     <hr>

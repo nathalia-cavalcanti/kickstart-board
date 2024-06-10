@@ -1,5 +1,5 @@
 <template>
-  <div class="grid z-10 grid-cols-2 gap-x-8 items-stretch px-20 h-screen">
+  <div class="z-10 grid h-screen grid-cols-2 items-stretch gap-x-8 px-20">
     <div class="grid content-center">
       <h1 class="mb-8 text-3xl font-bold">
         Get started!
@@ -9,14 +9,14 @@
         v-model="newBoardTitle"
         type="text"
         data-cy="first-board"
-        class="px-2 mt-4 w-full h-8 bg-white rounded-sm border-2"
+        class="mt-4 h-8 w-full rounded-sm border-2 bg-white px-2"
         placeholder="Name of your first board"
         name="newBoard"
         @keyup.enter.prevent="redirectToNewBoard()"
       >
     </div>
     <img
-      class="gap-x-5 self-center place-self-center"
+      class="gap-x-5 place-self-center self-center"
       src="@/assets/start.png"
     >
   </div>
