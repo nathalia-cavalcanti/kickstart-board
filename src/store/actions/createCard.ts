@@ -6,9 +6,10 @@ export const createCard = async function (this: any, card: Partial<Card>) {
   const listIndex = this.lists.findIndex((list: List) => list.id === card.listId);
   const cardsInList = this.lists[listIndex].cards;
   const order = cardsInList.length;
+  const completed = false;
 
   await API_MOCK
-    .post('/api/cards', { order, ...card })
+    .post('/api/cards', { order, completed, ...card })
     .then(({ data }) => {
       this.lists[listIndex].cards.push(data);
     })
