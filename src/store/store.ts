@@ -14,7 +14,6 @@ import { deleteBoard } from './actions/deleteBoard';
 import { signup } from './actions/signup';
 import { login } from './actions/login';
 import { user } from './actions/user';
-import { reset } from './actions/reset';
 import { showNotification } from './actions/showNotification';
 import { showCardModule } from './actions/showCardModule';
 import { resetBoards } from './actions/resetBoards';
@@ -123,7 +122,6 @@ export const useStore = defineStore({
     searchCard,
 
     // reset actions
-    reset,
     resetBoards,
     resetLists,
     resetCards,

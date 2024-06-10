@@ -1,7 +1,7 @@
-import axios from 'axios';
+import { API_MOCK } from '@/service/mock';
 
 export const resetBoards = async function (this: any) {
-  axios
+  await API_MOCK
     .delete('/api/boards')
     .then(() => {
       this.activeCard = {};

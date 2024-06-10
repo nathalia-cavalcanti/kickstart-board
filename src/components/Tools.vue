@@ -8,7 +8,7 @@
     <button
       class="m-1 border border-black bg-white px-1"
       @click="
-        reset();
+        resetBoards();
         router.push('/');
       "
     >
@@ -48,7 +48,7 @@
 import { useStore } from '@/store/store';
 import { useRouter } from 'vue-router';
 
-const { reset, resetBoards, resetLists, resetCards, resetUsers } = useStore();
+const { resetBoards, resetLists, resetCards, resetUsers } = useStore();
 
 const router = useRouter();
 </script>

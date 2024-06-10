@@ -135,20 +135,20 @@
             v-if="activeCard.image"
             class="grid grid-cols-6 gap-x-4"
             data-cy="image-attachment"
-          >
+          > 
             <div class="col-span-2 row-span-2">
-              <img :src="'/backend' + activeCard.image">
+              <img :src="activeCard.image.url">
             </div>
             <div class="col-span-4 font-bold">
-              {{ activeCard.image.replace(`/data/uploaded/${activeCard.id}_`, '') }}
-              <a
+              {{ activeCard.image.name }}
+              <div
                 class="block cursor-pointer font-normal underline"
                 data-cy="image-delete"
-                :href="'/backend' + activeCard.image"
-                download
+                @click="downloadFile(activeCard.image)"
               >
-                <Download class="mb-1 inline-block w-4" />Download
-              </a>
+                <Download class="mb-1 inline-block w-4" /> 
+                Download
+              </div>
               <div
                 class="block cursor-pointer font-normal underline"
                 data-cy="image-delete"
@@ -217,8 +217,8 @@ import Trash from '@/assets/icons/trash.svg';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 import { MdEditor } from 'md-editor-v3';
-
 import 'md-editor-v3/lib/style.css';
 
 const router = useRouter();
@@ -254,6 +254,20 @@ const copyProperties = (content: Card) => {
   showNotification('Card info copied to clipboard', false);
   return clipboard.writeText(clipBoardValue);
 };
+
+const downloadFile = async (file: Card['image']) => {
+  if (!file) return
+
+  await axios.get(file.url, { responseType: 'blob' }).then(({data}) => {
+    const blob = new Blob([data])
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = file.name
+    link.click()
+    URL.revokeObjectURL(link.href)
+    document.body.removeChild(link);
+  })
+}	
 
 onMounted(() => {
   router.push(`${router.currentRoute.value.path}?card=${activeCard.value.id}`);

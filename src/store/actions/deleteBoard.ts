@@ -1,8 +1,8 @@
 import Board from '@/typings/board';
-import axios from 'axios';
+import { API_MOCK } from '@/service/mock';
 
 export const deleteBoard = async function (this: any, boardId: Board['id']) {
-  axios
+  await API_MOCK
     .delete(`/api/boards/${boardId}`)
     .then(() => {
       this.showNotification('Board was deleted', false);
