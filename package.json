@@ -39,6 +39,7 @@
     "json-server-auth": "^2.1.0",
     "jws-jwk": "^0.1.4",
     "leaflet": "^1.8.0",
+    "md-editor-v3": "^4.16.7",
     "moment": "^2.29.1",
     "nocache": "^3.0.1",
     "node-emoji": "^1.11.0",

@@ -21,13 +21,13 @@
         />
       </div>
 
-      <div class="w-full">
+      <div class="w-full md:max-w-[550px]">
         <div class="mb-4 ml-9">
           <Board class="-ml-8 mr-3 inline-block w-5" />
           <input
             v-model="activeCard.name"
             v-click-away="clickAwayCardName"
-            class="board-title mb-2 bg-transparent text-base font-semibold leading-4 text-black hover:bg-opacity-30 focus:bg-white"
+            class="board-title mb-2 bg-transparent text-lg font-bold text-black hover:bg-opacity-30 focus:bg-white"
             data-cy="card-detail-title"
             @focus="
               selectInput($event);
@@ -110,33 +110,25 @@
 
         <div class="mb-4 ml-9">
           <Description class="-ml-8 mr-3 inline-block w-5" />
-          <h1 class="mb-4 inline-block text-lg font-semibold text-black">
+          <h1 class="mb-4 inline-block text-lg font-bold text-black">
             Description
           </h1>
-          <textarea
+          <MdEditor
             v-model="activeCard.description"
-            class="h-36 w-full resize-none p-3"
-            data-cy="card-description"
-            @focus="
-              selectInput($event);
-              descriptionInputActive = true;
-            "
-            @change="patchCard(activeCard, { description: activeCard.description })"
-            @keydown.enter="
-              blurInput($event);
-              descriptionInputActive = false;
-            "
-            @keyup.esc="
-              blurInput($event);
-              descriptionInputActive = false;
-            "
+            class="w-full p-2"
+            style="height: 192px;"
+            language="en-US"
+            :footers="[]" 
+            :preview="false"
+            @on-save="updateDescription"
+            @on-blur="updateDescription"
           />
         </div>
         <div class="mb-4 ml-9">
           <div class="inline-block">
             <Attachment class="-ml-8 mr-3 inline-block w-5" />
           </div>
-          <h1 class="mb-4 inline-block text-lg font-semibold text-black">
+          <h1 class="mb-4 inline-block text-lg font-bold text-black">
             Image
           </h1>
           <div
@@ -172,7 +164,7 @@
           />
         </div>
       </div>
-      <div class="col-span-2 grid min-w-[140px] content-start gap-y-2 md:mt-10">
+      <div class="col-span-2 grid content-start gap-y-2 md:mt-10">
         <div
           class="cursor-pointer rounded-sm bg-gray3 px-2 py-0.5 text-sm text-gray-600 hover:bg-gray5"
           data-cy="calendar-button"
@@ -225,6 +217,9 @@ import Trash from '@/assets/icons/trash.svg';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { MdEditor } from 'md-editor-v3';
+
+import 'md-editor-v3/lib/style.css';
 
 const router = useRouter();
 const { showNotification, showCardModule, patchCard, deleteCard } = useStore();
@@ -233,15 +228,19 @@ const cardListName = lists.value.find((l: List) => l.id === activeCard.value.lis
 
 const showDate = ref(false);
 const cardNameInputActive = ref(false);
-const descriptionInputActive = ref(false);
 const date = ref(new Date());
 
 const clickAwayCardName = () => {
   cardNameInputActive.value = false;
 };
+
 const clickAwayDate = () => {
   showDate.value = false;
 };
+
+const updateDescription = () => {
+  patchCard(activeCard.value, { description: activeCard.value.description })
+}
 
 const updateDate = (data: string) => {
   const formattedDate = moment(data).format('YYYY-MM-DD');
