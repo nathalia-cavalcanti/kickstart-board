@@ -7,13 +7,14 @@
     <div class="flex px-1.5 pl-0.5">
       <Checkbox :card="card" />
       <div
-        class="flex-grow select-none pl-2 text-sm text-gray-800"
+        class="flex-grow select-none pl-2 pr-4 text-sm text-gray-800"
         style="white-space: break-spaces"
         data-cy="card-text"
       >
         {{ card.name }}
       </div>
-      <Pen class="pen absolute right-2 top-2 hidden h-5 w-5 bg-gray1 bg-opacity-60 p-1 text-gray-700" />
+      <Pen class="pen absolute bottom-2 right-2 hidden h-5 w-5 bg-gray1 bg-opacity-60 p-1 text-gray-700" />
+      <Handle class="handle absolute right-1 top-2" />
     </div>
     <div
       class="mt-1 w-[fit-content] rounded-sm px-1.5 py-1 text-xs text-gray9"
@@ -33,6 +34,7 @@ import Card from '@/typings/card';
 import Checkbox from '@/components/Checkbox.vue';
 import Clock from '@/assets/icons/clock.svg';
 import Pen from '@/assets/icons/pen.svg';
+import Handle from '@/assets/icons/handle.svg';
 import moment from 'moment';
 
 const props = defineProps({

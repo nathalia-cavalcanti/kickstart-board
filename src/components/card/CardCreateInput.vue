@@ -47,23 +47,25 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['toggleInput']);
+const emit = defineEmits(['toggleInput', 'scrollListToEnd']);
 
 const { board } = storeToRefs(useStore());
 const cardCreate = ref();
 const { createCard } = useStore();
 let cardTitle = ref('');
 
-const addCard = () => {
+const addCard = async () => {
   if (!cardTitle.value) {
     return;
   }
-  createCard({
+
+  await createCard({
     boardId: board.value.id,
     listId: props.list.id,
     name: cardTitle.value,
   });
   cardTitle.value = '';
+  emit('scrollListToEnd');
 };
 
 const onClickAway = () => {
@@ -73,5 +75,6 @@ const onClickAway = () => {
 
 onMounted(() => {
   cardCreate.value.focus();
+  emit('scrollListToEnd');
 });
 </script>

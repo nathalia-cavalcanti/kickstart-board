@@ -7,7 +7,7 @@ export const createCard = async function (this: any, card: Partial<Card>) {
   const cardsInList = this.lists[listIndex].cards;
   const order = cardsInList.length;
 
-  axios
+  await axios
     .post('/api/cards', { order, ...card })
     .then(({ data }) => {
       this.lists[listIndex].cards.push(data);

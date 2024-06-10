@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative mb-32 ml-3 w-list rounded bg-gray2 p-1.5 shadow-md"
+    class="relative mb-5 ml-3 flex max-h-full w-list flex-col rounded bg-gray2 p-1.5 shadow-md"
     data-cy="list"
     @dragenter="isDragging = true"
     @dragleave="isDragging = false"
@@ -28,7 +28,9 @@
       />
     </div>
     <div
+      ref="refScrollableCardList"
       data-cy="card-list"
+      class="overflow-y-scroll"
       :class="isDragging ?? 'min-h-[100px]'"
     >
       <div
@@ -43,26 +45,30 @@
         group="cards"
         ghost-class="bg-gray2"
         :item-key="list.name"
+        :scroll-sensitivity="200"
+        :force-fallback="true"
+        handle=".handle"
         @change="sortCards"
       >
         <template #item="{ element }">
           <CardItem :card="element" />
         </template>
       </draggable>
-      <div
-        v-if="!cardCreate"
-        class="cursor-pointer rounded-md px-2 py-1.5 text-sm font-normal text-gray-500 hover:bg-gray4 hover:text-gray-600"
-        data-cy="new-card"
-        @click="showCardCreate(true)"
-      >
-        <Plus class="inline-block h-3 w-3" />Add another card
-      </div>
-      <CardCreateInput
-        v-else
-        :list="list"
-        @toggle-input="showCardCreate"
-      />
     </div>
+    <div
+      v-if="!cardCreate"
+      class="cursor-pointer rounded-md px-2 py-1.5 text-sm font-normal text-gray-500 hover:bg-gray4 hover:text-gray-600"
+      data-cy="new-card"
+      @click="showCardCreate(true)"
+    >
+      <Plus class="inline-block h-3 w-3" />Add another card
+    </div>
+    <CardCreateInput
+      v-else
+      :list="list"
+      @toggle-input="showCardCreate"
+      @scroll-list-to-end="scrollCardListToEnd"
+    />
   </div>
 </template>
 
@@ -89,9 +95,16 @@ const props = defineProps<{
 const cardCreate = ref(false);
 const inputActive = ref(false);
 const isDragging = ref(false);
+const refScrollableCardList = ref<HTMLDivElement>()
 
 const { lists, loadingListCards } = storeToRefs(useStore());
 const { patchCard, patchList } = useStore();
+
+const scrollCardListToEnd = () => {
+  if(refScrollableCardList.value) {
+    refScrollableCardList.value.scrollTop = refScrollableCardList.value.scrollHeight
+  }
+}
 
 const onClickAway = () => {
   inputActive.value = false;
