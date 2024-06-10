@@ -1,9 +1,9 @@
 import Card from '@/typings/card';
-import axios from 'axios';
+import { API_MOCK } from '@/service/mock';
 
 export const showCardModule = async function (this: any, cardId: Card['id'], flag: boolean) {
   if (flag) {
-    await axios
+    await API_MOCK
       .get(`/api/cards/${cardId}`)
       .then(({ data }) => {
         this.activeCard = data;

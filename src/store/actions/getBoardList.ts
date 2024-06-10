@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { API_MOCK } from '@/service/mock';
 
 export const getBoardList = async function (this: any) {
   this.loadingError.show = false;
@@ -7,7 +7,7 @@ export const getBoardList = async function (this: any) {
   setTimeout(() => {
     this.loadingError.tooLong = true;
   }, 3000);
-  axios
+  await API_MOCK
     .get('/api/boards')
     .then(({ data }) => {
       this.boardList.all = data;
