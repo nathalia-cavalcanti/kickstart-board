@@ -1,12 +1,11 @@
-import aws from 'aws-sdk'
+import S3 from 'aws-sdk/clients/s3'
 
 const bucketName = 'upload-s3-aws-kickstart-board';
 
-//In real application - use as environmnent variables
-const s3 = new aws.S3({
+const s3 = new S3({
     region: 'us-east-2',
-    accessKeyId: 'AKIAVRUVRWCLGTUA74HK',
-    secretAccessKey: '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',
+    accessKeyId: process.env.ACCESS_KEY_ID_AWS,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY_AWS,
     signatureVersion: 'v4'
 })
 
