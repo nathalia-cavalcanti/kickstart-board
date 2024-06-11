@@ -114,14 +114,14 @@
             Description
           </h1>
           <MdEditor
-            v-model="activeCard.description"
+            v-model="description"
+            v-click-away="updateDescription"
             class="w-full p-2"
             style="height: 192px;"
-            language="en-US"
-            :footers="[]" 
+            language="en-US" 
+            :footers="[]"
             :preview="false"
             @on-save="updateDescription"
-            @on-blur="updateDescription"
           />
         </div>
         <div class="mb-4 ml-9">
@@ -205,7 +205,7 @@
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import { blurInput } from '@/utils/blurInput';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { selectInput } from '@/utils/selectInput';
 import { useStore } from '@/store/store';
 import Attachment from '@/assets/icons/attachment.svg';
@@ -233,6 +233,7 @@ const router = useRouter();
 const { showNotification, showCardModule, patchCard, deleteCard, board } = useStore();
 const { lists, activeCard } = storeToRefs(useStore());
 const cardListName = lists.value.find((l: List) => l.id === activeCard.value.listId)!['name'];
+const description = ref(activeCard.value.description);
 
 const showDate = ref(false);
 const cardNameInputActive = ref(false);
@@ -247,7 +248,9 @@ const clickAwayDate = () => {
 };
 
 const updateDescription = () => {
-  patchCard(activeCard.value, { description: activeCard.value.description })
+  if(description.value !== activeCard.value.description) {
+    patchCard(activeCard.value, { description: description.value })
+  }
 }
 
 const updateDate = (data: string) => {
