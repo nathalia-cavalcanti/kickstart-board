@@ -7,9 +7,11 @@ export const createCard = async function (this: any, card: Partial<Card>) {
   const cardsInList = this.lists[listIndex].cards;
   const order = cardsInList[cardsInList.length - 1].order + 1;
   const completed = false;
+  const description = '';
+  const file = null;
 
   await API_MOCK
-    .post('/api/cards', { order, completed, ...card })
+    .post('/api/cards', { order, completed, description, file, ...card })
     .then(({ data }) => {
       this.lists[listIndex].cards.push(data);
     })
