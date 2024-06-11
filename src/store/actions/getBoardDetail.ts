@@ -15,20 +15,27 @@ export const getBoardDetail = async function (this: any, id: Board['id']) {
     const board = await API_MOCK.get(`/api/boards/${id}`);
     this.board = board.data;
 
-    const lists = await API_MOCK.get(`/api/boards/${id}/lists`);
-    
-    lists.data.sort((a: List, b: List) => {
-      return a.order - b.order;
-    });
+    await API_MOCK.get(`/api/boards/${id}/lists`).then(({data}) => {
+      const lists = data;
 
-    lists.data.forEach((list: List) => {
-      list.cards.sort((a: Card, b: Card) => {
+      lists.sort((a: List, b: List) => {
         return a.order - b.order;
       });
-    })
-
-    this.lists = lists.data;
-    if (lists.data.length) this.createListInput = false;
+  
+      lists.forEach((list: List) => {
+        list.cards.sort((a: Card, b: Card) => {
+          return a.order - b.order;
+        });
+      })
+  
+      this.lists = lists;
+      if (lists.length) this.createListInput = false;
+    }).catch((e) => {
+    //Remove when use a real API returning empty array with status 200
+      if (e.response.status === 404) {
+        this.lists = [];
+      } 
+    });
 
     const qs: any = route.query?.card;
     if (qs !== undefined) {
