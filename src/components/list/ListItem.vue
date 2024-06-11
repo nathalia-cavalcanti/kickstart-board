@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="filteredCards.length || props.filterStatus==='all'"
     class="relative mb-5 ml-3 flex max-h-full w-list flex-col rounded bg-gray2 p-1.5 shadow-md"
     data-cy="list"
     @dragenter="isDragging = true"
