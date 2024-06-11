@@ -8,7 +8,7 @@
     "
   >
     <div
-      class="relative flex w-full flex-col gap-3 overflow-y-scroll bg-gray2 p-6 md:w-[750px] md:flex-row md:justify-between"
+      class="relative flex w-full flex-col gap-3 overflow-y-auto bg-gray2 p-6 md:w-[750px] md:flex-row md:justify-between"
       data-cy="card-detail"
     >
       <div class="absolute right-6 top-6 grid h-8 w-8 cursor-pointer place-content-center place-self-end hover:bg-gray5">
@@ -67,7 +67,7 @@
 
             <div
               v-if="showDate"
-              class="absolute"
+              class="absolute z-10"
             >
               <Datepicker
                 v-model="date"

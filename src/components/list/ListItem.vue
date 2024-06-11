@@ -31,7 +31,7 @@
     <div
       ref="refScrollableCardList"
       data-cy="card-list"
-      class="overflow-y-scroll"
+      class="card-list overflow-y-auto"
       :class="isDragging ?? 'min-h-[100px]'"
     >
       <div
@@ -150,3 +150,9 @@ const sortCards = () => {
   });
 };
 </script>
+
+<style lang="postcss" scoped>
+  .card-list::-webkit-scrollbar {
+      display: none;    
+  }
+</style>
