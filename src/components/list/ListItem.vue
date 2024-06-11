@@ -65,15 +65,14 @@
     </div>
     <CardCreateInput
       v-else
-      :list="list"
-      @toggle-input="showCardCreate"
-      @scroll-list-to-end="scrollCardListToEnd"
+      @cancel="showCardCreate(false)"
+      @submit="addNewCard"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { blurInput } from '@/utils/blurInput';
 import { inputValue } from '@/utils/inputValue';
 import { selectInput } from '@/utils/selectInput';
@@ -98,8 +97,8 @@ const inputActive = ref(false);
 const isDragging = ref(false);
 const refScrollableCardList = ref<HTMLDivElement>()
 
-const { lists, loadingListCards } = storeToRefs(useStore());
-const { patchCard, patchList } = useStore();
+const { lists, loadingListCards, board } = storeToRefs(useStore());
+const { patchCard, patchList, createCard } = useStore();
 
 const scrollCardListToEnd = () => {
   if(refScrollableCardList.value) {
@@ -107,9 +106,28 @@ const scrollCardListToEnd = () => {
   }
 }
 
+watch(cardCreate, (created) => {
+  created && scrollCardListToEnd()
+}, {flush: 'post'})
+
+const addNewCard = async (title?: string) => {
+  if (!title) {
+    return;
+  }
+
+  await createCard({
+    boardId: board.value.id,
+    listId: props.list.id,
+    name: title,
+  });
+
+  scrollCardListToEnd()
+};
+
 const onClickAway = () => {
   inputActive.value = false;
 };
+
 const showCardCreate = (flag: boolean) => {
   cardCreate.value = flag;
 };
