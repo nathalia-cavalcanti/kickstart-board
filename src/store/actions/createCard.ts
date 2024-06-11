@@ -5,7 +5,7 @@ import { API_MOCK } from '@/service/mock';
 export const createCard = async function (this: any, card: Partial<Card>) {
   const listIndex = this.lists.findIndex((list: List) => list.id === card.listId);
   const cardsInList = this.lists[listIndex].cards;
-  const order = cardsInList[cardsInList.length - 1].order + 1;
+  const order = (cardsInList[cardsInList.length - 1]?.order ?? 0) + 1;
   const completed = false;
   const description = '';
   const file = null;
