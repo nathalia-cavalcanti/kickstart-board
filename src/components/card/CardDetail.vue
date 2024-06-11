@@ -190,7 +190,7 @@
           class="cursor-pointer rounded-sm bg-gray3 px-2 py-0.5 text-sm text-gray-600 hover:bg-gray5"
           data-cy="card-detail-delete"
           @click="
-            deleteCard(activeCard);
+            deleteCard(activeCard, board.id);
             router.push(router.currentRoute.value.path);
           "
         >
@@ -230,7 +230,7 @@ import { MdEditor } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 
 const router = useRouter();
-const { showNotification, showCardModule, patchCard, deleteCard } = useStore();
+const { showNotification, showCardModule, patchCard, deleteCard, board } = useStore();
 const { lists, activeCard } = storeToRefs(useStore());
 const cardListName = lists.value.find((l: List) => l.id === activeCard.value.listId)!['name'];
 

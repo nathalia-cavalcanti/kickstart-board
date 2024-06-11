@@ -28,7 +28,7 @@
       :warning="true"
       data-cy="delete-list"
       @click="
-        deleteList(list.id);
+        deleteList(list.id, list.boardId);
         hideDropdown();
       "
     />
